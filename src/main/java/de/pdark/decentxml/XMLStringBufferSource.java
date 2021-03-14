@@ -1,11 +1,11 @@
 /*
  * Copyright (c) 2008, Aaron Digulla
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
- * 
+ *
  *     * Redistributions of source code must retain the above copyright
  *       notice, this list of conditions and the following disclaimer.
  *     * Redistributions in binary form must reproduce the above copyright
@@ -15,7 +15,7 @@
  *     * Neither the name of Aaron Digulla nor the names of its
  *       contributors may be used to endorse or promote products derived
  *       from this software without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
  * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
@@ -31,28 +31,22 @@
  */
 package de.pdark.decentxml;
 
-public class XMLStringBufferSource implements XMLSource
-{
-    private StringBuffer data;
-    
-    public XMLStringBufferSource (StringBuffer data)
-    {
-        this.data = data;
-    }
+public class XMLStringBufferSource implements XMLSource {
+  private StringBuffer data;
 
-    public int length ()
-    {
-        return data.length ();
-    }
-    
-    public char charAt (int offset)
-    {
-        return data.charAt (offset);
-    }
+  public XMLStringBufferSource(StringBuffer data) {
+    this.data = data;
+  }
 
-    public String substring (int start, int end)
-    {
-        return data.substring (start, end);
-    }
+  public int length() {
+    return data.length();
+  }
 
+  public char charAt(int offset) {
+    return data.charAt(offset);
+  }
+
+  public String substring(int start, int end) {
+    return data.substring(start, end);
+  }
 }

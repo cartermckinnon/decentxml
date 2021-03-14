@@ -1,11 +1,11 @@
 /*
  * Copyright (c) 2008, Aaron Digulla
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
- * 
+ *
  *     * Redistributions of source code must retain the above copyright
  *       notice, this list of conditions and the following disclaimer.
  *     * Redistributions in binary form must reproduce the above copyright
@@ -15,7 +15,7 @@
  *     * Neither the name of Aaron Digulla nor the names of its
  *       contributors may be used to endorse or promote products derived
  *       from this software without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
  * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
@@ -27,38 +27,35 @@
  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  */
 package de.pdark.decentxml;
 
+import de.pdark.decentxml.XMLTokenizer.Type;
 import java.io.IOException;
 
-import de.pdark.decentxml.XMLTokenizer.Type;
-
 /**
- *  Common interface for all nodes in an XML document.
- *  
- *  @author digulla
- *  @see de.pdark.decentxml.Document
+ * Common interface for all nodes in an XML document.
+ *
+ * @author digulla
+ * @see de.pdark.decentxml.Document
  */
-public interface Node
-{
-    /** Slow way to convert a node to XML */
-    public String toXML ();
-    
-    /** Fast way to convert many nodes to XML */
-    public Node toXML (XMLWriter writer) throws IOException;
-    
-    /** Get the node type */
-    public Type getType ();
-    
-    /** Copy all data from {@code orig} into {@code this} */
-    public Node copy (Node orig);
-    
-    /** Simulate clone() */
-    public Node createClone ();
-    
-    /** Simulate clone() */
-    public Node copy ();
-    
+public interface Node {
+  /** Slow way to convert a node to XML */
+  public String toXML();
+
+  /** Fast way to convert many nodes to XML */
+  public Node toXML(XMLWriter writer) throws IOException;
+
+  /** Get the node type */
+  public Type getType();
+
+  /** Copy all data from {@code orig} into {@code this} */
+  public Node copy(Node orig);
+
+  /** Simulate clone() */
+  public Node createClone();
+
+  /** Simulate clone() */
+  public Node copy();
 }

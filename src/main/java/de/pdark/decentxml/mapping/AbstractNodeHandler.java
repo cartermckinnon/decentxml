@@ -1,37 +1,29 @@
 package de.pdark.decentxml.mapping;
 
+import de.pdark.decentxml.Node;
 import java.lang.reflect.Method;
 
-import de.pdark.decentxml.Node;
+public abstract class AbstractNodeHandler implements INodeHandler {
+  protected final Object handler;
+  protected final Method method;
 
-public abstract class AbstractNodeHandler implements INodeHandler
-{
-    protected final Object handler;
-    protected final Method method;
-    
-    public AbstractNodeHandler (Object handler, Method method)
-    {
-        this.handler = handler;
-        this.method = method;
+  public AbstractNodeHandler(Object handler, Method method) {
+    this.handler = handler;
+    this.method = method;
+  }
+
+  public void handle(Node node) {
+    try {
+      invoke(node);
+    } catch (Exception e) {
+      throw new MappingException(node + ": Error invoking " + method + " on " + handler, e);
     }
-    
-    public void handle (Node node)
-    {
-        try
-        {
-            invoke (node);
-        }
-        catch (Exception e)
-        {
-            throw new MappingException (node+": Error invoking "+method+" on "+handler, e);
-        }
-    }
-    
-    public abstract void invoke (Node node) throws Exception;
-    
-    @Override
-    public String toString ()
-    {
-        return super.toString () + "(handler="+handler+", method="+method+")";
-    }
+  }
+
+  public abstract void invoke(Node node) throws Exception;
+
+  @Override
+  public String toString() {
+    return super.toString() + "(handler=" + handler + ", method=" + method + ")";
+  }
 }

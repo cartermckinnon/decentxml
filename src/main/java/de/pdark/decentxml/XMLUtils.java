@@ -1,11 +1,11 @@
 /*
  * Copyright (c) 2008, Aaron Digulla
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
- * 
+ *
  *     * Redistributions of source code must retain the above copyright
  *       notice, this list of conditions and the following disclaimer.
  *     * Redistributions in binary form must reproduce the above copyright
@@ -15,7 +15,7 @@
  *     * Neither the name of Aaron Digulla nor the names of its
  *       contributors may be used to endorse or promote products derived
  *       from this software without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
  * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
@@ -35,88 +35,63 @@ import de.pdark.decentxml.XMLTokenizer.Type;
 
 /**
  * Utility methods when working with XML.
- * 
+ *
  * @author digulla
  * @since 1.1
  */
-public class XMLUtils //@COBEX
-{
-    /** Escape '&lt;', '&gt;' and '&amp;' */
-    public static String escapeXMLText (String text)
-    {
-        if (text == null)
-            return null;
-        
-        // TODO Replace with StringBuilder
-        return text
-            .replaceAll ("&", EntityResolver.AMP_ESCAPE)
-            .replaceAll ("<", EntityResolver.LT_ESCAPE)
-            .replaceAll (">", EntityResolver.GT_ESCAPE)
-        ;
-    }
-    
-    /** Unescape '&lt;', '&gt;' and '&amp;' */
-    public static String unescapeXMLText (String text)
-    {
-        if (text == null)
-            return null;
-        
-        // TODO Replace with StringBuilder
-        return text
-            .replaceAll (EntityResolver.AMP_ESCAPE, "&")
-            .replaceAll (EntityResolver.LT_ESCAPE, "<")
-            .replaceAll (EntityResolver.GT_ESCAPE, ">")
-        ;
-    }
-    
-    /** Unescape '&lt;', '&gt;', '&amp;', '&quot;' and '&apos;' */
-    public static String unescapeXMLAttributeValue (String text)
-    {
-        if (text == null)
-            return null;
-        
-        // TODO Replace with StringBuilder
-        return unescapeXMLText (text)
-            .replaceAll (EntityResolver.QUOT_ESCAPE, "\"")
-            .replaceAll (EntityResolver.APOS_ESCAPE, "'")
-        ;
-    }
-    
-    public static boolean isElement (Node n)
-    {
-        return n == null ? false : isElementType (n.getType ());
-    }
-    
-    public static boolean isElementType (Type t)
-    {
-        return t == Type.ELEMENT
-            || t == Type.CUSTOM_ELEMENT
-        ;
-    }
-    
-    public static boolean isAttribute (Node n)
-    {
-        return n == null ? false : isAttributeType (n.getType ());
-    }
-    
-    public static boolean isAttributeType (Type t)
-    {
-        return t == Type.ATTRIBUTE
-            || t == Type.CUSTOM_ATTRIBUTE
-        ;
-    }
-    
-    public static boolean isText (Node n)
-    {
-        return n == null ? false : isTextType (n.getType ());
-    }
-    
-    public static boolean isTextType (Type t)
-    {
-        return t == Type.TEXT
-            || t == Type.CDATA
-            || t == Type.DTD_WHITESPACE
-        ;
-    }
-    
+public class XMLUtils // @COBEX
+ {
+  /** Escape '&lt;', '&gt;' and '&amp;' */
+  public static String escapeXMLText(String text) {
+    if (text == null) return null;
+
+    // TODO Replace with StringBuilder
+    return text.replaceAll("&", EntityResolver.AMP_ESCAPE)
+        .replaceAll("<", EntityResolver.LT_ESCAPE)
+        .replaceAll(">", EntityResolver.GT_ESCAPE);
+  }
+
+  /** Unescape '&lt;', '&gt;' and '&amp;' */
+  public static String unescapeXMLText(String text) {
+    if (text == null) return null;
+
+    // TODO Replace with StringBuilder
+    return text.replaceAll(EntityResolver.AMP_ESCAPE, "&")
+        .replaceAll(EntityResolver.LT_ESCAPE, "<")
+        .replaceAll(EntityResolver.GT_ESCAPE, ">");
+  }
+
+  /** Unescape '&lt;', '&gt;', '&amp;', '&quot;' and '&apos;' */
+  public static String unescapeXMLAttributeValue(String text) {
+    if (text == null) return null;
+
+    // TODO Replace with StringBuilder
+    return unescapeXMLText(text)
+        .replaceAll(EntityResolver.QUOT_ESCAPE, "\"")
+        .replaceAll(EntityResolver.APOS_ESCAPE, "'");
+  }
+
+  public static boolean isElement(Node n) {
+    return n == null ? false : isElementType(n.getType());
+  }
+
+  public static boolean isElementType(Type t) {
+    return t == Type.ELEMENT || t == Type.CUSTOM_ELEMENT;
+  }
+
+  public static boolean isAttribute(Node n) {
+    return n == null ? false : isAttributeType(n.getType());
+  }
+
+  public static boolean isAttributeType(Type t) {
+    return t == Type.ATTRIBUTE || t == Type.CUSTOM_ATTRIBUTE;
+  }
+
+  public static boolean isText(Node n) {
+    return n == null ? false : isTextType(n.getType());
+  }
+
+  public static boolean isTextType(Type t) {
+    return t == Type.TEXT || t == Type.CDATA || t == Type.DTD_WHITESPACE;
+  }
 }

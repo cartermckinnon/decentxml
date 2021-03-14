@@ -8,7 +8,4 @@ import java.lang.annotation.Target;
 /** If there is no matching attribute, throw an exception */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.PARAMETER})
-public @interface RequiredAttribute
-{
-    
-}
+public @interface RequiredAttribute {}

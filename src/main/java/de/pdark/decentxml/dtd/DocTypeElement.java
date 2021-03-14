@@ -1,11 +1,11 @@
 /*
  * Copyright (c) 2008, Aaron Digulla
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
- * 
+ *
  *     * Redistributions of source code must retain the above copyright
  *       notice, this list of conditions and the following disclaimer.
  *     * Redistributions in binary form must reproduce the above copyright
@@ -15,7 +15,7 @@
  *     * Neither the name of Aaron Digulla nor the names of its
  *       contributors may be used to endorse or promote products derived
  *       from this software without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
  * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
@@ -30,84 +30,71 @@
  */
 package de.pdark.decentxml.dtd;
 
-import java.util.List;
-
 import de.pdark.decentxml.BasicNode;
 import de.pdark.decentxml.Token;
 import de.pdark.decentxml.XMLTokenizer.Type;
+import java.util.List;
 
-public class DocTypeElement extends BasicNode
-{
-    private String name;
-    private String content;
-    private List<DocTypeAttributeList> attLists;
-    
-    public DocTypeElement (Token token, String name, String content)
-    {
-        super (token);
-        this.name = name.trim ();
-        this.content = content.trim ();
-    }
-    
-    public DocTypeElement (Type type, String name, String content)
-    {
-        super (type, toXML (name, content));
-        this.name = name.trim ();
-        this.content = content.trim ();
-    }
-    
-    public String getName ()
-    {
-        return name;
-    }
-    
-    public void setName (String name)
-    {
-        this.name = name;
-        updateValue ();
-        this.name = name.trim ();
-    }
-    
-    public String getContent ()
-    {
-        return content;
-    }
-    
-    public void setContent (String content)
-    {
-        this.content = content;
-        updateValue ();
-        this.content = content.trim ();
-    }
-    
-    protected void updateValue ()
-    {
-        setValue (toXML (name, content));
-    }
-    
-    public static String toXML (String name, String content)
-    {
-        StringBuilder buffer = new StringBuilder ();
-        
-        buffer.append ("<!ELEMENT");
-        if (!Character.isWhitespace (name.charAt (0)))
-            buffer.append (" ");
-        buffer.append (name);
-        if (!Character.isWhitespace (name.charAt (name.length () - 1)) && !Character.isWhitespace (content.charAt (0)))
-            buffer.append (" ");
-        buffer.append (content);
-        buffer.append ('>');
-        
-        return buffer.toString ();
-    }
+public class DocTypeElement extends BasicNode {
+  private String name;
+  private String content;
+  private List<DocTypeAttributeList> attLists;
 
-    public void setAttLists (List<DocTypeAttributeList> value)
-    {
-        this.attLists = value;
-    }
-    
-    public List<DocTypeAttributeList> getAttLists ()
-    {
-        return attLists;
-    }
+  public DocTypeElement(Token token, String name, String content) {
+    super(token);
+    this.name = name.trim();
+    this.content = content.trim();
+  }
+
+  public DocTypeElement(Type type, String name, String content) {
+    super(type, toXML(name, content));
+    this.name = name.trim();
+    this.content = content.trim();
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+    updateValue();
+    this.name = name.trim();
+  }
+
+  public String getContent() {
+    return content;
+  }
+
+  public void setContent(String content) {
+    this.content = content;
+    updateValue();
+    this.content = content.trim();
+  }
+
+  protected void updateValue() {
+    setValue(toXML(name, content));
+  }
+
+  public static String toXML(String name, String content) {
+    StringBuilder buffer = new StringBuilder();
+
+    buffer.append("<!ELEMENT");
+    if (!Character.isWhitespace(name.charAt(0))) buffer.append(" ");
+    buffer.append(name);
+    if (!Character.isWhitespace(name.charAt(name.length() - 1))
+        && !Character.isWhitespace(content.charAt(0))) buffer.append(" ");
+    buffer.append(content);
+    buffer.append('>');
+
+    return buffer.toString();
+  }
+
+  public void setAttLists(List<DocTypeAttributeList> value) {
+    this.attLists = value;
+  }
+
+  public List<DocTypeAttributeList> getAttLists() {
+    return attLists;
+  }
 }

@@ -1,11 +1,11 @@
 /*
  * Copyright (c) 2008, Aaron Digulla
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
- * 
+ *
  *     * Redistributions of source code must retain the above copyright
  *       notice, this list of conditions and the following disclaimer.
  *     * Redistributions in binary form must reproduce the above copyright
@@ -15,7 +15,7 @@
  *     * Neither the name of Aaron Digulla nor the names of its
  *       contributors may be used to endorse or promote products derived
  *       from this software without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
  * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
@@ -27,32 +27,31 @@
  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  */
 package de.pdark.decentxml;
 
 /**
- * This is an interface for anything which can be a child.
- * Only <code>Element</code> implements this.
- * 
+ * This is an interface for anything which can be a child. Only <code>Element</code> implements
+ * this.
+ *
  * @author digulla
  * @see de.pdark.decentxml.Element
  * @see de.pdark.decentxml.Document
  */
-public interface Child extends Node
-{
-    /** The parent of this child */
-    public Parent getParent ();
-    
-    /** Change the parent of this child.
-     * 
-     *  <p>CAUTION: If the child is already attached to a parent, this
-     *  call <em>will not</em> detach the old relation! You
-     *  <em>must</em> call <code>child.getParent().removeNode (child)</code>,
-     *  first!
-     */
-    public Child setParent (Parent parent);
-    
-    /** Return a path which uniquely describes this child. */
-    public String getNodePath ();
+public interface Child extends Node {
+  /** The parent of this child */
+  public Parent getParent();
+
+  /**
+   * Change the parent of this child.
+   *
+   * <p>CAUTION: If the child is already attached to a parent, this call <em>will not</em> detach
+   * the old relation! You <em>must</em> call <code>child.getParent().removeNode (child)</code>,
+   * first!
+   */
+  public Child setParent(Parent parent);
+
+  /** Return a path which uniquely describes this child. */
+  public String getNodePath();
 }

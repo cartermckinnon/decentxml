@@ -1,11 +1,11 @@
 /*
  * Copyright (c) 2008, Aaron Digulla
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
- * 
+ *
  *     * Redistributions of source code must retain the above copyright
  *       notice, this list of conditions and the following disclaimer.
  *     * Redistributions in binary form must reproduce the above copyright
@@ -15,7 +15,7 @@
  *     * Neither the name of Aaron Digulla nor the names of its
  *       contributors may be used to endorse or promote products derived
  *       from this software without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
  * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
@@ -41,99 +41,77 @@ import java.net.URL;
 
 /**
  * An XML source based on <code>InputStream</code> or <code>Reader</code>.
- * 
- * <p>This class uses <code>XMLInputStreamReader</code> to read from
- * an <code>InputStream</code>.
- * 
+ *
+ * <p>This class uses <code>XMLInputStreamReader</code> to read from an <code>InputStream</code>.
+ *
  * @author digulla
  * @see de.pdark.decentxml.XMLInputStreamReader
  * @see java.io.InputStream
  * @see java.io.Reader
  */
-public class XMLIOSource extends XMLStringSource
-{
-    public XMLIOSource (InputStream in) throws IOException
-    {
-        this (new XMLInputStreamReader (in));
+public class XMLIOSource extends XMLStringSource {
+  public XMLIOSource(InputStream in) throws IOException {
+    this(new XMLInputStreamReader(in));
+  }
+
+  public XMLIOSource(Reader reader) throws IOException {
+    super(toString(reader));
+  }
+
+  public XMLIOSource(File file) throws IOException {
+    super(toString(file));
+  }
+
+  public XMLIOSource(URL url) throws IOException {
+    super(toString(url));
+  }
+
+  public static String toString(URL url) throws IOException {
+    return toString(url.openStream());
+  }
+
+  public static String toString(File file) throws IOException {
+    InputStream in = new FileInputStream(file);
+    return toString(in);
+  }
+
+  /**
+   * @param in
+   * @return
+   * @throws IOException
+   */
+  public static String toString(InputStream in) throws IOException {
+    Reader reader = null;
+    IOException exception = null;
+    String result = null;
+    try {
+      reader = new XMLInputStreamReader(new BufferedInputStream(in));
+      result = toString(reader);
+    } catch (IOException e) {
+      exception = e;
+    } finally {
+      try {
+        if (reader != null) reader.close();
+      } catch (IOException e) {
+        if (exception == null) exception = e;
+      }
     }
 
-    public XMLIOSource (Reader reader) throws IOException
-    {
-        super (toString (reader));
-    }
-    
-    public XMLIOSource (File file) throws IOException
-    {
-        super (toString (file));
+    if (exception != null) throw exception;
+
+    return result;
+  }
+
+  /** Helper method: Read everything from a <code>Reader</code> into a <code>String</code> */
+  public static String toString(Reader reader) throws IOException {
+    StringBuilder buffer = new StringBuilder(10240);
+    char[] cbuf = new char[10240];
+    int len;
+
+    while ((len = reader.read(cbuf)) != -1) {
+      buffer.append(cbuf, 0, len);
     }
 
-    public XMLIOSource (URL url) throws IOException
-    {
-        super (toString (url));
-    }
-    
-    public static String toString (URL url) throws IOException
-    {
-        return toString (url.openStream ());
-    }
-
-    public static String toString (File file) throws IOException
-    {
-        InputStream in = new FileInputStream (file);
-        return toString (in);
-    }
-
-    /**
-     * @param in
-     * @return
-     * @throws IOException
-     */
-    public static String toString (InputStream in) throws IOException
-    {
-        Reader reader = null;
-        IOException exception = null;
-        String result = null;
-        try
-        {
-            reader = new XMLInputStreamReader (new BufferedInputStream (in));
-            result = toString (reader);
-        }
-        catch (IOException e)
-        {
-            exception = e;
-        }
-        finally
-        {
-            try
-            {
-                if (reader != null)
-                    reader.close ();
-            }
-            catch (IOException e)
-            {
-                if (exception == null)
-                    exception = e;
-            }
-        }
-        
-        if (exception != null)
-            throw exception;
-        
-        return result;
-    }
-
-    /** Helper method: Read everything from a <code>Reader</code> into a <code>String</code> */
-    public static String toString (Reader reader) throws IOException
-    {
-        StringBuilder buffer = new StringBuilder (10240);
-        char[] cbuf = new char[10240];
-        int len;
-        
-        while ((len = reader.read (cbuf)) != -1)
-        {
-            buffer.append (cbuf, 0, len);
-        }
-        
-        return buffer.toString ();
-    }
+    return buffer.toString();
+  }
 }
