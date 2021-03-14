@@ -1,0 +1,13 @@
+Since there wasn't a decent XML parser, I've started writing one myself. Main
+features:
+
+    * Allows 100% round-tripping, even for weird whitespace between attributes
+      in the start tag or in the end tag
+    * Suitable for building editors and filters which want/need to preserve
+      the original file layout as much as possible
+    * Error messages have line and column information
+    * Easy to reuse individual components
+    * XML 1.0 compatible 
+
+Needs Java 5 or better.
+

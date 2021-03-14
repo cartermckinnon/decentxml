@@ -1,0 +1,13 @@
+TODO:
+- Iterators for element nodes
+- Allow whitespace between attribute name, "=" and value
+- Add a helper class to fix the formatting of an XML document
+
+DONE:
+* Add copyright information to all files
+* A class which can decode an arbitrary InputStream using the standard XML rules
+* Documentation
+* Add a tutorial to the docs
+* Add support for entity references
+* Extend ProcessingInstruction to really support XML declarations
+* Add support for parsing DOCTYPE
